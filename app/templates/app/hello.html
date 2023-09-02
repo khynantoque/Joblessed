@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>{{ job }}</title>
 </head>
 <body>
-<h1>Hello World!</h1>
+{% for i in name %}
+ <h1>Hello {{ i }}</h1>
+{% endfor %}
+<h3>You are {{ age }} years old.</h3>
 </body>
 </html>
