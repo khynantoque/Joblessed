@@ -24,17 +24,14 @@ def hello(request):
 
 # Create your views here.
 def job_list(request):
-    html = ''
-    for i, j in enumerate(jobs):
-        html += f'<li><a href="{reverse("jobs_detail", args=(i,))}">{j}</a></li>'
-    return HttpResponse(f'<html><ol>{html}</ol></html>')
-
+    context = {'jobs': jobs}
+    return render(request, 'app/job_list.html', context)
 
 def job_detail(request, jobid):
     try:
         if jobid == 0:
             return redirect(reverse('jobs_list'))
         context = {'job': jobs[jobid], 'detail': details[jobid]}
-        return render(request, 'app/hello.html', context)
+        return render(request, 'app/job_detail.html', context)
     except:
         return HttpResponseNotFound('Not Found')
