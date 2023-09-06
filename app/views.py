@@ -3,17 +3,9 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.template import loader
 
-jobs = [
-    'First Job',
-    'Second Job',
-    'Third Job'
-]
+from app.models import JobPost
 
-details = [
-    'First Description',
-    'Second Description',
-    'Third Description'
-]
+jobs = JobPost.objects.all()
 
 
 def hello(request):
@@ -29,9 +21,7 @@ def job_list(request):
 
 def job_detail(request, jobid):
     try:
-        if jobid == 0:
-            return redirect(reverse('jobs_list'))
-        context = {'job': jobs[jobid], 'detail': details[jobid]}
+        context = {'jobs': jobs.get(id=jobid)}
         return render(request, 'app/job_detail.html', context)
     except:
         return HttpResponseNotFound('Not Found')
