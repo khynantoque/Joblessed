@@ -19,9 +19,9 @@ def job_list(request):
     context = {'jobs': jobs}
     return render(request, 'app/job_list.html', context)
 
-def job_detail(request, jobid):
+def job_detail(request, jobId):
     try:
-        context = {'jobs': jobs.get(id=jobid)}
+        context = {'jobs': jobs.get(id=jobId)}
         return render(request, 'app/job_detail.html', context)
     except:
         return HttpResponseNotFound('Not Found')

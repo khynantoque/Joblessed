@@ -8,6 +8,7 @@ class JobPost(models.Model):
     description = models.CharField(max_length=200)
     date = models.DateField(auto_now_add = True)
     salary = models.IntegerField()
+    expiry = models.DateField(null=True)
     slug = models.SlugField(null=True, max_length=40, unique=True)
     
     def save(self, *args, **kwargs):
